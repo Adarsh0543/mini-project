@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Census Income Prediction</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f2f5; padding: 20px; }
+        .form-container { background: white; max-width: 600px; margin: auto; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        .result { margin-top: 20px; text-align: center; font-size: 1.2em; font-weight: bold; color: #28a745; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Income Classifier</h2>
+    <form action="/predict" method="POST">
+        
+        <div class="form-group">
+            <label>Age</label>
+            <input type="number" name="Age" required placeholder="e.g., 35">
+        </div>
+        <div class="form-group">
+            <label>Capital Gain</label>
+            <input type="number" name="Capital-gain" required value="0">
+        </div>
+        <div class="form-group">
+            <label>Capital Loss</label>
+            <input type="number" name="Capital-loss" required value="0">
+        </div>
+        <div class="form-group">
+            <label>Hours per Week</label>
+            <input type="number" name="Hours per week" required placeholder="e.g., 40">
+        </div>
+
+        <div class="form-group">
+            <label>Work Class</label>
+            <select name="Work class">
+                <option value="Private">Private</option>
+                <option value="Self-emp-not-inc">Self-emp-not-inc</option>
+                <option value="Local-gov">Local-gov</option>
+                <option value="State-gov">State-gov</option>
+                <option value="Federal-gov">Federal-gov</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Education</label>
+            <select name="Education">
+                <option value="Bachelors">Bachelors</option>
+                <option value="HS-grad">HS-grad</option>
+                <option value="Masters">Masters</option>
+                <option value="Some-college">Some-college</option>
+                <option value="Doctorate">Doctorate</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Marital Status</label>
+            <select name="Marital status">
+                <option value="Married-civ-spouse">Married-civ-spouse</option>
+                <option value="Never-married">Never-married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Separated">Separated</option>
+                <option value="Widowed">Widowed</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Occupation</label>
+            <select name="Occupation">
+                <option value="Tech-support">Tech-support</option>
+                <option value="Craft-repair">Craft-repair</option>
+                <option value="Other-service">Other-service</option>
+                <option value="Sales">Sales</option>
+                <option value="Exec-managerial">Exec-managerial</option>
+                <option value="Prof-specialty">Prof-specialty</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Native Country</label>
+            <select name="Native country">
+                <option value="United-States">United-States</option>
+                <option value="India">India</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Canada">Canada</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Sex</label>
+            <select name="Sex">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+</div>
+
+</body>
+</html>
