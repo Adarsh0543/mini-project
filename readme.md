@@ -15,12 +15,17 @@ This project is a machine learning web application that predicts whether a perso
 * **Serialization:** Joblib
 
 ## 📊 Model Performance Evaluation
-During the training phase, several models were tested to find the best balance of accuracy and F1-score. Below are the results obtained during testing:
+During the training phase, several models were tested to find the best balance of accuracy and F1-score. Below are the comparative results obtained during testing:
 
 | Model | Accuracy | Precision (Weighted) | Recall (Weighted) | F1-Score (Weighted) |
 | :--- | :---: | :---: | :---: | :---: |
-| **K-Nearest Neighbors** | **0.84** | 0.85 | 0.84 | 0.84 |
-| **Decision Tree** | 0.83 | 0.83 | 0.83 | 0.83 |
+| **Random Forest Classifier** | **0.86** | **0.86** | **0.86** | **0.86** |
+| **K-Neighbors Classifier** | 0.84 | 0.85 | 0.84 | 0.84 |
+| **AdaBoost Classifier** | 0.83 | 0.83 | 0.83 | 0.83 |
+| **Decision Tree Classifier** | 0.83 | 0.83 | 0.83 | 0.83 |
+| **Support Vector Classifier** | 0.76 | 0.76 | 0.76 | 0.76 |
+| **Naive Bayes** | 0.76 | 0.76 | 0.76 | 0.76 |
 | **Logistic Regression** | 0.75 | 0.75 | 0.75 | 0.75 |
 
-*> **Note:** While KNN showed high accuracy, the **Random Forest Classifier** was selected for the final deployment to ensure better generalization and robustness against overfitting on unseen data.*
+*> **Conclusion:** The **Random Forest Classifier** achieved the highest accuracy (86%) and F1-score, making it the most robust model for this dataset. It was consequently selected for the final deployment.*
+
