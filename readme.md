@@ -48,3 +48,12 @@ During the training phase, several models were tested to find the best balance o
 | **Logistic Regression** | 0.75 | 0.75 | 0.75 | 0.75 |
 
 > **Conclusion:** The **Random Forest Classifier** achieved the highest accuracy (**88%**) and F1-score after tuning, making it the most robust model for this dataset. It was consequently selected for the final deployment.
+
+## 📈 Feature Importance Analysis (Additional Contribution)
+To improve model interpretability, I extracted the **Feature Importance** scores from the tuned Random Forest model. This analysis reveals which factors contribute most significantly to income prediction.
+
+
+![Feature Importance Graph](feature_importance.png)
+
+**Key Observations:**
+* * Here age and marital status are found to be the most critical indicators of income levels
