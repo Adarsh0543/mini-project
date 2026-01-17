@@ -4,7 +4,7 @@
 This project is a machine learning web application that predicts whether a person's income exceeds $50K/year based on census data. Using the 1994 US Census (Adult) dataset, various classification algorithms were trained and evaluated. The final model (Random Forest) is deployed using a **Flask** web application for real-time predictions.
 
 ## 📂 Dataset Details
-* **Source:** 1994 US Census Database.
+* **Source:** [1994 US Census Database](https://archive.ics.uci.edu/dataset/20/census+income).
 * **Goal:** Binary classification to predict if salary is `<=50K` or `>50K`.
 
 ### Feature Descriptions
