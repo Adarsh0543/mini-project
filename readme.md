@@ -1,10 +1,10 @@
-# US Census Income Classification Project
+# US Census Income Prediction: Classification & Feature Analysis
 
 ## 📌 Project Overview
-This project is a machine learning web application that predicts whether a person's income exceeds $50K/year based on census data. Using the 1994 US Census (Adult) dataset, various classification algorithms were trained and evaluated. The final model (Random Forest) is deployed using a **Flask** web application for real-time predictions.
+This project is a machine learning web application that predicts whether a person's income exceeds $50K/year based on census data. Using the US Census (Adult) dataset, various classification algorithms were trained and evaluated. The final model (Random Forest) is deployed using a **Flask** web application for real-time predictions.
 
 ## 📂 Dataset Details
-* **Source:** [1994 US Census Database](https://archive.ics.uci.edu/dataset/20/census+income).
+* **Source:** [US Census Database](https://archive.ics.uci.edu/dataset/20/census+income).
 * **Goal:** Binary classification to predict if salary is `<=50K` or `>50K`.
 
 ### Feature Descriptions
@@ -28,12 +28,6 @@ The dataset consists of the following features:
 | **Native Country** | Indicates the individual's country of origin. |
 | **Salary (Target)** | **The target variable.** Indicates whether the individual's income is `>50K` or `<=50K`. |
 
-## 🛠️ Tech Stack
-* **Frontend:** HTML, CSS
-* **Backend:** Python, Flask
-* **Machine Learning:** Scikit-learn, Pandas, NumPy
-* **Serialization:** Joblib
-
 ## 📊 Model Performance Evaluation
 During the training phase, several models were tested to find the best balance of accuracy and F1-score. Below are the comparative results obtained during testing. The **Random Forest Classifier** metrics reflect the performance after hyperparameter tuning.
 
@@ -47,6 +41,13 @@ During the training phase, several models were tested to find the best balance o
 | **Naive Bayes** | 0.76 | 0.76 | 0.76 | 0.76 |
 | **Logistic Regression** | 0.75 | 0.75 | 0.75 | 0.75 |
 
+## 🛠️ Tech Stack
+* **Frontend:** HTML, CSS
+* **Backend:** Python, Flask
+* **Machine Learning:** Scikit-learn, Pandas, NumPy
+* **Serialization:** Joblib
+
+
 > **Conclusion:** The **Random Forest Classifier** achieved the highest accuracy (**88%**) and F1-score after tuning, making it the most robust model for this dataset. It was consequently selected for the final deployment.
 
 ## 📈 Feature Importance Analysis (Additional Contribution)
@@ -56,4 +57,6 @@ To improve model interpretability, I extracted the **Feature Importance** scores
 ![Feature Importance Graph](feature_importance.png)
 
 **Key Observations:**
-* * Here age and marital status are found to be the most critical indicators of income levels
+* **Marital Status :** This was the most significant predictor. Married individuals(specifically "Married-civ-spouse") showed higher income brackets, likely indicating dual-income households or greater financial stability associated with this demographic.
+
+* **Age :** The second most critical feature. Income tends to increase with experience and career progression, making older individuals more likely to earn >$50k up to a certain retirement age.

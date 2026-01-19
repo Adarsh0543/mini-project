@@ -4,9 +4,10 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Load trained model and encoders
+
 model = joblib.load('model.pkl')
-encoders = joblib.load('encoders.pkl')  # Expecting a dict: {'Work class': le_object, ...}
+encoders = joblib.load('encoders.pkl')  
+scaler = joblib.load('scaler.pkl')
 
 @app.route('/')
 def home():
@@ -18,20 +19,19 @@ def predict():
         try:
             # 1. Collect Numeric Features
             age = float(request.form['Age'])
-            capital_gain = float(request.form['Capital-gain'])
-            capital_loss = float(request.form['Capital-loss'])
+            raw_capital_gain = float(request.form['Capital-gain'])
+            capital_gain=np.sqrt(raw_capital_gain)
+            raw_capital_loss = float(request.form['Capital-loss'])
+            capital_loss=np.sqrt(raw_capital_loss)
             hours_per_week = float(request.form['Hours per week'])
 
             # 2. Collect & Encode Categorical Features (Using your loaded LabelEncoders)
-            # We use .transform([value])[0] to get the integer
             work_class = encoders['Work class'].transform([request.form['Work class']])[0]
             education = encoders['Education'].transform([request.form['Education']])[0]
             marital_status = encoders['Marital status'].transform([request.form['Marital status']])[0]
             occupation = encoders['Occupation'].transform([request.form['Occupation']])[0]
             native_country = encoders['Native country'].transform([request.form['Native country']])[0]
-
             # 3. Handle One-Hot Encoding for Sex
-            # Your features have 'Sex_ Female' and 'Sex_ Male'
             sex_input = request.form['Sex']
             
             if sex_input == 'Female':
@@ -42,7 +42,6 @@ def predict():
                 sex_male = 1
 
             # 4. Create Final Feature Array
-            # MUST match this order: ['Age', 'Work class', 'Education', 'Marital status', 'Occupation', 'Capital-gain', 'Capital-loss', 'Hours per week', 'Native country', 'Sex_ Female', 'Sex_ Male']
             features = np.array([[
                 age, 
                 work_class, 
@@ -56,9 +55,9 @@ def predict():
                 sex_female, 
                 sex_male
             ]])
-
+            features_scaled = scaler.transform(features)
             # 5. Predict
-            prediction = model.predict(features)
+            prediction = model.predict(features_scaled)
             output = 'Income >50K' if prediction[0] == 1 else 'Income <=50K'
 
             return render_template('index.html', prediction_text=f'Prediction: {output}')
