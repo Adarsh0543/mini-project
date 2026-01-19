@@ -50,7 +50,7 @@ During the training phase, several models were tested to find the best balance o
 
 > **Conclusion:** The **Random Forest Classifier** achieved the highest accuracy (**88%**) and F1-score after tuning, making it the most robust model for this dataset. It was consequently selected for the final deployment.
 
-## 📈 Feature Importance Analysis (Additional Contribution)
+## 📈 Feature Importance Analysis 
 To improve model interpretability, I extracted the **Feature Importance** scores from the tuned Random Forest model. This analysis reveals which factors contribute most significantly to income prediction.
 
 
